@@ -48,7 +48,8 @@ implements Comparable<ActivityPair<T>> {
     }
 
     public boolean overlaps(ActivityPair<T> another) {
-
+        if (this.valuesEqual(another)) {
+            return true; }
         if (start.compareTo(another.getEnd()) >= 0) {
             return false;
         }
@@ -57,8 +58,15 @@ implements Comparable<ActivityPair<T>> {
     }
 
     public boolean startEqual(ActivityPair<T> another) {
+        return this.start.compareTo(another.getStart()) == 0;
+    }
+    
+    public boolean endEqual(ActivityPair<T> another) {
+        return this.end.compareTo(another.getEnd()) == 0;
+    }
+    public boolean valuesEqual(ActivityPair<T> another) {
         return 
-            this.start.compareTo(another.getStart()) == 0
+        this.startEqual(another) && this.endEqual(another)
         ;
     }
 

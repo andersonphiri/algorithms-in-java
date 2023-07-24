@@ -2,6 +2,7 @@ package com.chitataunga.algorithms.greedy;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,23 +32,25 @@ public class ActivitySelection<T extends Comparable<T>> {
     public  
     static <T extends Comparable<T>> 
             ActivitySelection<T> from(Collection<ActivityPair<T>> activities) {
-        return new ActivitySelection<T>(activities);
+        var result = new ActivitySelection<T>(activities);
+        return  (ActivitySelection<T>)result;
     }
     
     public  
     static <T extends Comparable<T>> 
     ActivitySelection<T> from(Queue<ActivityPair<T>> activities) {
-        return new ActivitySelection<T>(activities);
+        return new ActivitySelection(
+            (Collection<ActivityPair<T>>)activities);
     }
 
-    protected ActivitySelection(Collection<ActivityPair<T>> activities) {
-        Arr
-        this.activities = (ActivityPair<T>[]) activities.stream().toArray();
+    public ActivitySelection(Collection<ActivityPair<T>> activities) {
+        // int n = activities.size();
+        var arrays = activities.toArray(new ActivityPair[0]);
+        this.activities = arrays; //(ActivityPair<T>[]) (activities.toArray());
     }
     
-    protected ActivitySelection(Queue<ActivityPair<T>> activities) {
-
-        this.activities = (ActivityPair<T>[]) activities.stream().toArray();
+    public ActivitySelection(Queue<ActivityPair<T>> activities) {
+        this.activities = (ActivityPair<T>[])(activities.toArray());
     }
 
     private void checkIfStateIsValid() {
@@ -104,6 +107,7 @@ public class ActivitySelection<T extends Comparable<T>> {
                 continue;
             }
             current = act;
+            cnt++;
         }
         return cnt;
 
