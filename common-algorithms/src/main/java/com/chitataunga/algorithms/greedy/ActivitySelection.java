@@ -50,7 +50,8 @@ public class ActivitySelection<T extends Comparable<T>> {
     }
     
     public ActivitySelection(Queue<ActivityPair<T>> activities) {
-        this.activities = (ActivityPair<T>[])(activities.toArray());
+        var arrays = activities.toArray(new ActivityPair[0]);
+        this.activities = arrays;
     }
 
     private void checkIfStateIsValid() {
