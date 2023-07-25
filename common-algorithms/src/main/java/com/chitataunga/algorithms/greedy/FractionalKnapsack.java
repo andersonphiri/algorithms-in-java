@@ -19,7 +19,8 @@ public class FractionalKnapsack {
     }
 
     static void sortByAverageWeight(FractionalKnapsackItem[] items) {
-        Arrays.sort(items, (left, right) -> Double.valueOf(left.average()).compareTo(right.average()));
+        Arrays.sort(items,
+        (left, right) -> Double.valueOf(right.average()).compareTo(left.average()));
     }
 
     static void consumeValue(double knapSackSize,
